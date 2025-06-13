@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Plataforma de Cálculo de Preços</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="header">
+        <h1>Dashboard - Cálculo de Preços</h1>
+        <div class="user-info">
+            <span id="user-name">Bem-vindo, Admin!</span>
+            <button id="logout-btn" class="btn btn-secondary">Sair</button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+        <button class="nav-btn" data-section="produtos">Produtos/Serviços</button>
+        <button class="nav-btn" data-section="insumos">Insumos</button>
+        <button class="nav-btn" data-section="calculos">Cálculos</button>
+        <button class="nav-btn" data-section="relatorios">Relatórios</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <h2>Dashboard</h2>
+            <div class="dashboard-cards">
+                <div class="card">
+                    <h3>Produtos Cadastrados</h3>
+                    <div class="card-value" id="total-produtos">5</div>
+                </div>
+                <div class="card">
+                    <h3>Insumos Cadastrados</h3>
+                    <div class="card-value" id="total-insumos">12</div>
+                </div>
+                <div class="card">
+                    <h3>Cálculos Realizados</h3>
+                    <div class="card-value" id="total-calculos">8</div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <h3>Ações Rápidas</h3>
+                <button class="btn btn-primary" onclick="showSection('calculos')">Novo Cálculo</button>
+                <button class="btn btn-secondary" onclick="showSection('produtos')">Gerenciar Produtos</button>
+                <button class="btn btn-secondary" onclick="showSection('insumos')">Gerenciar Insumos</button>
+            </div>
+
+            <div class="recent-calculations">
+                <h3>Cálculos Recentes</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto/Serviço</th>
+                                <th>Preço Calculado</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-calculations-table">
+                            <!-- Dados serão preenchidos via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Produtos/Serviços Section -->
+        <section id="produtos-section" class="content-section">
+            <h2>Produtos e Serviços</h2>
+            <div class="section-header">
+                <button class="btn btn-primary" onclick="showProductForm()">Novo Produto/Serviço</button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="produtos-table">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Insumos Section -->
+        <section id="insumos-section" class="content-section">
+            <h2>Insumos</h2>
+            <div class="section-header">
+                <button class="btn btn-primary" onclick="showInsumoForm()">Novo Insumo</button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Custo Unitário</th>
+                            <th>Unidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="insumos-table">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Cálculos Section -->
+        <section id="calculos-section" class="content-section">
+            <h2>Cálculos de Preço</h2>
+            <div class="section-header">
+                <button class="btn btn-primary" onclick="showCalculoForm()">Novo Cálculo</button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Preço Calculado</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calculos-table">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Relatórios Section -->
+        <section id="relatorios-section" class="content-section">
+            <h2>Relatórios e Análises</h2>
+            
+            <div class="relatorio-cards">
+                <div class="card">
+                    <h3>Produto Mais Lucrativo</h3>
+                    <div class="card-value" id="produto-mais-lucrativo">Bolo de Chocolate</div>
+                    <div class="card-subtitle">Margem: 45%</div>
+                </div>
+                <div class="card">
+                    <h3>Receita Projetada (Mês)</h3>
+                    <div class="card-value" id="receita-projetada">R$ 3.250,00</div>
+                    <div class="card-subtitle">Baseado nos cálculos</div>
+                </div>
+                <div class="card">
+                    <h3>Margem Média</h3>
+                    <div class="card-value" id="margem-media">32%</div>
+                    <div class="card-subtitle">Todos os produtos</div>
+                </div>
+            </div>
+
+            <div class="analise-sensibilidade">
+                <h3>Análise de Sensibilidade</h3>
+                <p>Selecione um cálculo para ver a análise de sensibilidade:</p>
+                <select id="calculo-analise">
+                    <option value="">Selecione um cálculo...</option>
+                </select>
+                <div id="resultado-analise" style="display: none;">
+                    <h4>Impacto no Preço Final:</h4>
+                    <div class="sensibilidade-item">
+                        <span>Custo dos Insumos:</span>
+                        <span class="impacto alto">Alto (65%)</span>
+                    </div>
+                    <div class="sensibilidade-item">
+                        <span>Margem de Lucro:</span>
+                        <span class="impacto medio">Médio (25%)</span>
+                    </div>
+                    <div class="sensibilidade-item">
+                        <span>Impostos:</span>
+                        <span class="impacto baixo">Baixo (10%)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modais -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <h3 id="product-modal-title">Novo Produto/Serviço</h3>
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="product-name">Nome:</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-type">Tipo:</label>
+                    <select id="product-type" required>
+                        <option value="">Selecione...</option>
+                        <option value="produto">Produto</option>
+                        <option value="servico">Serviço</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Categoria:</label>
+                    <input type="text" id="product-category">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descrição:</label>
+                    <textarea id="product-description" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="insumo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeInsumoModal()">&times;</span>
+            <h3 id="insumo-modal-title">Novo Insumo</h3>
+            <form id="insumo-form">
+                <div class="form-group">
+                    <label for="insumo-name">Nome:</label>
+                    <input type="text" id="insumo-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="insumo-cost">Custo Unitário (R$):</label>
+                    <input type="number" id="insumo-cost" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="insumo-unit">Unidade de Medida:</label>
+                    <select id="insumo-unit" required>
+                        <option value="">Selecione...</option>
+                        <option value="kg">Quilograma (kg)</option>
+                        <option value="g">Grama (g)</option>
+                        <option value="l">Litro (l)</option>
+                        <option value="ml">Mililitro (ml)</option>
+                        <option value="un">Unidade (un)</option>
+                        <option value="m">Metro (m)</option>
+                        <option value="cm">Centímetro (cm)</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeInsumoModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="calculo-modal" class="modal large-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalculoModal()">&times;</span>
+            <h3 id="calculo-modal-title">Novo Cálculo de Preço</h3>
+            <form id="calculo-form">
+                <div class="form-group">
+                    <label for="calculo-name">Nome do Cálculo:</label>
+                    <input type="text" id="calculo-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="calculo-type">Tipo de Cálculo:</label>
+                    <select id="calculo-type" required onchange="toggleCalculoType()">
+                        <option value="">Selecione...</option>
+                        <option value="produto">Produto (Comerciante)</option>
+                        <option value="servico">Serviço/Produção (Insumos)</option>
+                    </select>
+                </div>
+
+                <div id="produto-calculo" class="calculo-type-section" style="display: none;">
+                    <h4>Dados do Produto</h4>
+                    <div class="form-group">
+                        <label for="custo-aquisicao">Custo de Aquisição (R$):</label>
+                        <input type="number" id="custo-aquisicao" step="0.01">
+                    </div>
+                </div>
+
+                <div id="servico-calculo" class="calculo-type-section" style="display: none;">
+                    <h4>Insumos da Receita</h4>
+                    <div id="receita-insumos">
+                        <div class="insumo-item">
+                            <select class="insumo-select">
+                                <option value="">Selecione um insumo...</option>
+                            </select>
+                            <input type="number" class="insumo-quantidade" placeholder="Quantidade" step="0.01">
+                            <button type="button" class="btn btn-small btn-danger" onclick="removeInsumo(this)">Remover</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="addInsumo()">Adicionar Insumo</button>
+                    
+                    <h4>Custos Adicionais</h4>
+                    <div class="form-group">
+                        <label for="custo-mao-obra">Mão de Obra (R$):</label>
+                        <input type="number" id="custo-mao-obra" step="0.01" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="custo-embalagem">Embalagem (R$):</label>
+                        <input type="number" id="custo-embalagem" step="0.01" value="0">
+                    </div>
+                </div>
+
+                <h4>Impostos e Encargos</h4>
+                <div class="form-group">
+                    <label for="impostos-percentual">Impostos (%):</label>
+                    <input type="number" id="impostos-percentual" step="0.01" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="encargos-fixos">Encargos Fixos (R$):</label>
+                    <input type="number" id="encargos-fixos" step="0.01" value="0">
+                </div>
+
+                <h4>Margem de Lucro</h4>
+                <div class="form-group">
+                    <label for="margem-lucro">Margem de Lucro Desejada (%):</label>
+                    <input type="number" id="margem-lucro" step="0.01" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-primary" onclick="calcularPreco()">Calcular Preço</button>
+                    <button type="submit" class="btn btn-success" style="display: none;" id="salvar-calculo-btn">Salvar Cálculo</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeCalculoModal()">Cancelar</button>
+                </div>
+            </form>
+
+            <div id="resultado-calculo" style="display: none;">
+                <h3>Resultado do Cálculo</h3>
+                <div class="resultado-card">
+                    <div class="preco-final">
+                        <h4>Preço de Venda Sugerido:</h4>
+                        <div class="preco-valor" id="preco-final-valor">R$ 0,00</div>
+                    </div>
+                    <div class="composicao-preco">
+                        <h4>Composição do Preço:</h4>
+                        <div class="composicao-item">
+                            <span>Custo Total:</span>
+                            <span id="composicao-custo">R$ 0,00</span>
+                        </div>
+                        <div class="composicao-item">
+                            <span>Impostos:</span>
+                            <span id="composicao-impostos">R$ 0,00</span>
+                        </div>
+                        <div class="composicao-item">
+                            <span>Encargos:</span>
+                            <span id="composicao-encargos">R$ 0,00</span>
+                        </div>
+                        <div class="composicao-item">
+                            <span>Lucro:</span>
+                            <span id="composicao-lucro">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
