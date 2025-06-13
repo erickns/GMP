@@ -7,12 +7,14 @@ Esta é a segunda versão do protótipo semi-funcional do frontend para a plataf
 ## Funcionalidades Implementadas
 
 ### 1. Sistema de Login
-- **Página de Login dedicada:** `login.html`
+
+- **Página de Login dedicada:** `index.html`
 - **Usuário:** admin
 - **Senha:** admin
 - Login fake com validação simulada e redirecionamento para o dashboard.
 
 ### 2. Dashboard
+
 - **Página do Dashboard dedicada:** `dashboard.html`
 - Visão geral com estatísticas dos produtos, insumos e cálculos
 - Cards informativos com totais
@@ -20,18 +22,21 @@ Esta é a segunda versão do protótipo semi-funcional do frontend para a plataf
 - Tabela de cálculos recentes
 
 ### 3. Gestão de Produtos/Serviços
+
 - Listagem de produtos e serviços cadastrados
 - Formulário para adicionar novos produtos/serviços
 - Edição e exclusão de produtos existentes
 - Categorização por tipo (produto/serviço)
 
 ### 4. Gestão de Insumos
+
 - Listagem de insumos com custos e unidades de medida
 - Formulário para cadastro de novos insumos
 - Edição e exclusão de insumos
 - Diferentes unidades de medida (kg, g, l, ml, un, m, cm)
 
 ### 5. Cálculos de Preço
+
 - Dois tipos de cálculo:
   - **Produto (Comerciante):** Baseado no custo de aquisição
   - **Serviço/Produção:** Baseado em insumos e receitas
@@ -47,6 +52,7 @@ Esta é a segunda versão do protótipo semi-funcional do frontend para a plataf
 - Histórico de cálculos realizados
 
 ### 6. Relatórios e Análises
+
 - Estatísticas gerais (produto mais lucrativo, receita projetada, margem média)
 - Análise de sensibilidade (simulada)
 - Indicadores de impacto dos diferentes componentes do preço
@@ -55,7 +61,7 @@ Esta é a segunda versão do protótipo semi-funcional do frontend para a plataf
 
 ```
 prototipo-frontend-v2/
-├── login.html          # Página de login
+├── index.html          # Página de login
 ├── dashboard.html      # Página principal do dashboard
 ├── styles.css          # Estilos e layout responsivo
 ├── data.js             # Dados mockados para simular o backend
@@ -67,7 +73,7 @@ prototipo-frontend-v2/
 ## Como Usar
 
 1. **Acesso:** Extraia o arquivo `prototipo-frontend-v2.zip`.
-2. **Login:** Abra o arquivo `login.html` em um navegador web moderno.
+2. **Login:** Abra o arquivo `index.html` em um navegador web moderno.
 3. **Credenciais:** Use as credenciais:
    - Usuário: `admin`
    - Senha: `admin`
@@ -86,17 +92,20 @@ O protótipo inclui dados de exemplo pré-carregados (ver `data.js` para detalhe
 ## Funcionalidades Técnicas
 
 ### Responsividade
+
 - Layout adaptável para desktop, tablet e mobile
 - Menu de navegação responsivo
 - Formulários otimizados para dispositivos móveis
 
 ### Interatividade
+
 - Modais para formulários
 - Validação de campos
 - Feedback visual para ações do usuário
 - Animações suaves
 
 ### Simulação de Backend
+
 - Todas as operações CRUD são simuladas
 - Dados persistem durante a sessão (via `localStorage` para o usuário logado)
 - Delays simulados para operações assíncronas
@@ -136,4 +145,3 @@ O protótipo inclui dados de exemplo pré-carregados (ver `data.js` para detalhe
 ## Observações
 
 Este protótipo serve como base para validação de conceito e demonstração das funcionalidades principais. Para uso em produção, será necessário implementar as camadas de backend, segurança e persistência adequadas.
-

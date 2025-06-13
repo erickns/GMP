@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const userData = localStorage.getItem("currentUser");
   if (!userData) {
     console.log("User not logged in, redirecting to login");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return;
   }
 
@@ -63,7 +63,7 @@ function initializeDashboard() {
 // Autenticação
 function handleLogout() {
   localStorage.removeItem("currentUser");
-  window.location.href = "login.html";
+  window.location.href = "index.html";
 }
 
 // Navegação
